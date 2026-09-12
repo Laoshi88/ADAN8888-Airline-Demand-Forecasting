@@ -19,8 +19,8 @@
 - [x] Major folders included: data, documents, models, notebooks
 - [x] Additional professional folders: src, outputs/figures
 - [x] README and .gitignore
-- [ ] Place the official BTS T-100 raw extract in data/raw/
-- [ ] Confirm repository visibility is PRIVATE
+- [x] Place the official BTS T-100 raw extract in data/raw/
+- [x] Confirm repository visibility is PRIVATE
 - [ ] Add instructor as collaborator
 - [ ] Confirm JupyterHub access
 - [ ] Submit the private GitHub repository URL in Canvas
