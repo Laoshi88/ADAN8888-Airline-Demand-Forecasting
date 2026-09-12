@@ -1,20 +1,18 @@
 # ADAN8888 Applied Analytics Project — Airline Passenger Demand Forecasting
 
-## Week 1 objective
-<<<<<<< HEAD
-Develop the foundation for a supervised regression project that forecasts next-month passenger demand for a directional U.S. domestic scheduled-passenger carrier-route using BTS **T-100 Domestic Segment (All Carriers)** data.
+## Week 1 Objective
+Develop The Foundation For A Supervised Regression Project That Forecasts Next-month Passenger Demand For A Directional U.s. Domestic Scheduled-passenger Carrier-route Using BTS **T-100 Domestic Segment (All Carriers)** Data..
 
-**Unit of analysis:** `UniqueCarrier × Origin × Dest × Year-Month` after filtering to Service Class `F` and aggregating aircraft-level records.  
-**Target:** passengers in month `t+1`.
+**Unit Of Analysis:** `UniqueCarrier × Origin × Dest × Year-Month` After Filtering To Service Class `F` And Aggregating Aircraft-Level Records.  
+**Target:** Passengers In Month `t+1`.
 
 ## GitHub repository
-- GitHub profile: `Laoshi88`
-- Recommended private repository name: `ADAN8888-Airline-Demand-Forecasting`
-- Repository visibility: **Private**
-- Instructor collaborator to add: `savasnurtekin` (or `savasnu@bc.edu`)
+- GitHub Profile: `Laoshi88`
+- Repository name: `ADAN8888-Airline-Demand-Forecasting`
+- Instructor Collaborator: `savasnurtekin` (or `savasnu@bc.edu`)
 
-## Course-standard repository structure
-The structure below follows the course's Git/GitHub instructions. The Cookiecutter `docs/` and `references/` folders are intentionally not used.
+## Course-Standard Repository Structure
+The Structure Below Follows The Course's Git/GitHub Instructions. The Cookiecutter `docs/` And `references/` Folders Are Intentionally Not Used.
 
 - `data/` — all datasets
   - `data/raw/` — immutable BTS source downloads and source/download documentation
@@ -44,22 +42,6 @@ Weekly artifacts follow the instructor's `week#_type_description` convention. Ex
 - `notebooks/week1_notebook_environment_check.ipynb` — optional environment/repository validation notebook
 - `src/week1_src_download_t100_domestic_segment.py` — reproducible BTS annual-data downloader
 - `data/raw/week1_data_t100_download_instructions.md` — source and manual-download fallback instructions
-=======
-Forecast next-month passenger demand for a directional U.S. domestic scheduled-passenger carrier-route using BTS T-100 Domestic Segment (All Carriers).
-
-**Unit of analysis:** `UniqueCarrier × Origin × Dest × Year-Month` after filtering to Service Class `F` and aggregating aircraft-level records.
-
-**Target:** passengers in month `t+1`.
-
-## Repository structure
-- `data/raw/` — immutable BTS source extract and source notes
-- `data/processed/` — later cleaned/model-ready datasets
-- `documents/week_01/` — Week 1 report
-- `notebooks/` — weekly Jupyter notebooks beginning Week 2
-- `models/` — serialized candidate/final models
-- `src/` — reusable Python code
-- `outputs/figures/` — report figures
->>>>>>> origin/main
 
 ## Week 1 status
 - [x] Problem statement and modeling intent defined
@@ -67,14 +49,13 @@ Forecast next-month passenger demand for a directional U.S. domestic scheduled-p
 - [x] Assumption-based economic value calculated
 - [x] 13-week plan aligned to the course syllabus
 - [x] Dataset and supervised-regression framing documented
-<<<<<<< HEAD
 - [x] Repository restructured to the course standards
 - [x] Weekly files renamed using the course convention
-- [ ] Download the official BTS extract(s) into `data/raw/`
-- [ ] Confirm JupyterHub/Python environment access
-- [ ] Create/confirm the private GitHub repository under `Laoshi88`
-- [ ] Add instructor collaborator (`savasnurtekin`)
-- [ ] Push the final Week 1 artifacts and submit the repository link in Canvas
+- [X] Download the official BTS extract(s) into `data/raw/`
+- [X] Confirm JupyterHub/Python environment access
+- [X] Create/confirm the private GitHub repository under `Laoshi88`
+- [X] Add instructor collaborator (`savasnurtekin`)
+- [X] Push the final Week 1 artifacts and submit the repository link in Canvas
 
 ## Data download
 From the project root in VS Code / PowerShell:
@@ -85,13 +66,7 @@ python .\src\week1_src_download_t100_domestic_segment.py --start-year 2015 --end
 
 Do not modify the raw ZIP files. Processed data belong under `data/processed/`.
 
-## Week 1 notebook note
-The Week 1 assignment does not require a submitted analysis notebook/code output; formal notebook/code-output deliverables begin in Week 2. The Week 1 notebook is included only as a professional environment/repository check.
-=======
-- [ ] Download the selected BTS extract into `data/raw/` from the official TranStats interface
-- [ ] Confirm JupyterHub access
-- [ ] Keep repository **private** and add the instructor as collaborator
-
-## Data source
-U.S. DOT Bureau of Transportation Statistics, TranStats: **T-100 Domestic Segment (All Carriers)**.
->>>>>>> origin/main
+## Week 1 Notebook Note
+- Week 1 Assignment Does Not Require A Submitted Analysis Notebook/Code Output. 
+- Notebook/Code-output Deliverables Begin In Week 2. 
+- Week 1 Notebook Is Included Only As A Professional Environment/Repository Check.
