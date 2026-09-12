@@ -1,15 +1,12 @@
 # Week 1 Repository Setup Guide
 
-This guide implements the course's **Getting Started with Git and GitHub** standards for the ADAN8888 airline-demand project.
+This guide is a summary of the **Getting Started with Git and GitHub** doc's standards.
 
 ## Recommended repository
 - GitHub profile: `Laoshi88`
-- Recommended private repository name: `ADAN8888-Airline-Demand-Forecasting`
-- Recommended remote URL after creation: `https://github.com/Laoshi88/ADAN8888-Airline-Demand-Forecasting.git`
+- Remote URL after creation: `https://github.com/Laoshi88/ADAN8888-Airline-Demand-Forecasting.git`
 
-Your local folder may remain named `adan8888_week1_project`; the local folder name does not need to match the GitHub repository name.
-
-## Course folder structure
+## Folder Structure
 Use these folders from the course/Cookiecutter template:
 - `data/` — datasets. This project uses `data/raw/` and `data/processed/`.
 - `models/` — serialized model objects later in the course.
@@ -19,9 +16,7 @@ Use these folders from the course/Cookiecutter template:
 - `README.md` — project description and navigation.
 - `requirements.txt` — libraries/dependencies needed to run the project.
 
-Do **not** use the Cookiecutter `docs/` or `references/` folders for this course.
-
-## File naming convention
+## File Nami ng Convention
 Use `week#_type_description` consistently. Examples in this project:
 - `week1_data_t100_domestic_segment_all_carriers_2015.zip`
 - `week1_notebook_environment_check.ipynb`
@@ -49,14 +44,15 @@ git remote remove origin
 
 Then add the `Laoshi88` remote shown above.
 
-## Instructor collaborator
+## Instructor Collab
 On GitHub: **Repository → Settings → Collaborators → Add people**. Search for `savasnurtekin` (or `savasnu@bc.edu`) and send the invitation. Keep the repository **private**.
 
-## Raw data
+## Raw Data
 Run the downloader from the project root:
 
 ```powershell
 python .\src\week1_src_download_t100_domestic_segment.py --start-year 2015 --end-year 2026 --out .\data\raw
 ```
 
-The downloader preserves annual source ZIPs unchanged in `data/raw/` and writes a manifest. Do not clean or alter raw files in place.
+The downloaderr preserves annual source ZIPs unchanged in `data/raw/` and writes a manifest. 
+Do not clean or alter raw files in place.

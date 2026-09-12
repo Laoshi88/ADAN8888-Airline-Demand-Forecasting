@@ -1,6 +1,8 @@
 # Week 1 Supporting Reference: T-100 Selected Fields
 
-These fields are retained for the Week 2 ingestion/exploration stage of the same semester project. The Week 1 report defines the problem and dataset; Week 2 will validate the downloaded schema and begin formal data exploration.
+These Fields Are Retained For The Week 2 Ingestion/Exploration Stage Of The Project.
+The Week 1 Report Is For Defining Th Problem & The Dataset.
+Week 2 Will Validate The Downloaded Schema And Begin Formal Data Exploration.
 
 | Field | Planned role |
 |---|---|
