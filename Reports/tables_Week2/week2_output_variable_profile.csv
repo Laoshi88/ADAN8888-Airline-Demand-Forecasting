@@ -1,0 +1,14 @@
+Variable,Role,DType,NonMissing,UniqueValues,Definition_or_Rationale,BTS_Definition
+TargetPassengersNextMonth,Target,float64,1566289,49411,Next-month passenger count for the same carrier and directional route.,Derived/project-defined field
+Passengers,Candidate predictor,float64,1882779,49477,Most recent observed demand at forecast origin; strong persistence/level signal.,Non-stop segment passengers transported
+Seats,Candidate predictor,float64,1882779,56317,Most recent available capacity; proxy for planned supply and market size.,Available seats
+DepScheduled,Candidate predictor,float64,1882779,946,Most recent scheduled frequency; captures offered service intensity.,Departures scheduled
+DepPerformed,Candidate predictor,float64,1882779,877,Most recent realized frequency; captures actual service delivered.,Departures performed
+LoadFactor,Candidate predictor,float64,1878356,906563,Capacity utilization measure; may indicate supply-demand pressure.,Ratio of passenger miles to available seat miles
+Distance,Candidate predictor,float64,1882779,2586,Stable route characteristic associated with market type and service pattern.,Distance between airports (miles)
+UniqueCarrier,Candidate predictor,string,1882742,181,"Carrier-specific network, fleet, and commercial effects.",Unique carrier code; preferred for analysis across years
+Origin,Candidate predictor,string,1882779,1006,Origin-market identity; captures location-specific demand structure.,Origin airport code
+Dest,Candidate predictor,string,1882779,1030,Destination-market identity; captures location-specific demand structure.,Destination airport code
+Year,Candidate predictor,int64,1882779,12,Long-run trend/regime information.,Calendar year
+Quarter,Candidate predictor,Int64,1882779,4,Broad seasonal pattern.,Calendar quarter
+Month,Candidate predictor,int64,1882779,12,Fine-grained calendar seasonality.,Calendar month

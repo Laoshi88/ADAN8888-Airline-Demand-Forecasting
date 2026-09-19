@@ -1,0 +1,13 @@
+Metric,Value
+Annual ZIP archives,12
+Selected raw T-100 rows ingested,4512207
+Service Class F rows,3396473
+Carrier-route-month rows,1882779
+Carrier-route-month columns,24
+Unique carriers,181
+Unique origins,1006
+Unique destinations,1030
+Unique directional routes,35790
+Unique carrier-route series,96545
+Rows with next-month target,1566289
+Rows without next-month target,316490
