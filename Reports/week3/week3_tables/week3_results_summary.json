@@ -1,0 +1,250 @@
+{
+  "split_summary": [
+    {
+      "Split": "Training",
+      "Rows": 1062603,
+      "ForecastMonths": 95,
+      "FirstReferenceMonth": "2015-01-01",
+      "LastReferenceMonth": "2022-11-01",
+      "FirstForecastMonth": "2015-02-01",
+      "LastForecastMonth": "2022-12-01",
+      "RowPercent": 67.84207767532045,
+      "MonthPercent": 69.8529411764706
+    },
+    {
+      "Split": "Validation",
+      "Rows": 239395,
+      "ForecastMonths": 20,
+      "FirstReferenceMonth": "2022-12-01",
+      "LastReferenceMonth": "2024-07-01",
+      "FirstForecastMonth": "2023-01-01",
+      "LastForecastMonth": "2024-08-01",
+      "RowPercent": 15.284216386631075,
+      "MonthPercent": 14.705882352941176
+    },
+    {
+      "Split": "Test",
+      "Rows": 264291,
+      "ForecastMonths": 21,
+      "FirstReferenceMonth": "2024-08-01",
+      "LastReferenceMonth": "2026-04-01",
+      "FirstForecastMonth": "2024-09-01",
+      "LastForecastMonth": "2026-05-01",
+      "RowPercent": 16.87370593804847,
+      "MonthPercent": 15.441176470588236
+    }
+  ],
+  "eligibility_summary": [
+    {
+      "Metric": "Carrier-route-month rows before target eligibility",
+      "Value": 1882779.0
+    },
+    {
+      "Metric": "Rows with missing reference month",
+      "Value": 0.0
+    },
+    {
+      "Metric": "Rows with missing next-month target",
+      "Value": 316490.0
+    },
+    {
+      "Metric": "Rows with negative next-month target",
+      "Value": 0.0
+    },
+    {
+      "Metric": "Rows eligible for Week 3 splitting/modeling",
+      "Value": 1566289.0
+    },
+    {
+      "Metric": "Percent of rows eligible",
+      "Value": 83.1903
+    },
+    {
+      "Metric": "Percent missing next-month target",
+      "Value": 16.8097
+    }
+  ],
+  "training_profile": [
+    {
+      "Metric": "Training rows",
+      "Value": 1062603
+    },
+    {
+      "Metric": "Training columns",
+      "Value": 26
+    },
+    {
+      "Metric": "First training forecast month",
+      "Value": "2015-02-01"
+    },
+    {
+      "Metric": "Last training forecast month",
+      "Value": "2022-12-01"
+    },
+    {
+      "Metric": "Training forecast months",
+      "Value": 95
+    },
+    {
+      "Metric": "Unique carriers in training",
+      "Value": 137
+    },
+    {
+      "Metric": "Unique directional routes in training",
+      "Value": 14095
+    },
+    {
+      "Metric": "Unique carrier-route series in training",
+      "Value": 35388
+    }
+  ],
+  "data_issues": [
+    {
+      "Issue": "Duplicate carrier-route-month keys",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Data-integrity check",
+      "RecommendedTreatment": "Investigate duplicates before modeling; Week 2 aggregation should normally make this zero."
+    },
+    {
+      "Issue": "Negative values in TargetPassengersNextMonth",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Logically invalid if present",
+      "RecommendedTreatment": "Trace back to source and correct/exclude only demonstrably invalid records."
+    },
+    {
+      "Issue": "Negative values in Passengers",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Logically invalid if present",
+      "RecommendedTreatment": "Trace back to source and correct/exclude only demonstrably invalid records."
+    },
+    {
+      "Issue": "Negative values in Seats",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Logically invalid if present",
+      "RecommendedTreatment": "Trace back to source and correct/exclude only demonstrably invalid records."
+    },
+    {
+      "Issue": "Negative values in DepScheduled",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Logically invalid if present",
+      "RecommendedTreatment": "Trace back to source and correct/exclude only demonstrably invalid records."
+    },
+    {
+      "Issue": "Negative values in DepPerformed",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Logically invalid if present",
+      "RecommendedTreatment": "Trace back to source and correct/exclude only demonstrably invalid records."
+    },
+    {
+      "Issue": "Negative values in Distance",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Logically invalid if present",
+      "RecommendedTreatment": "Trace back to source and correct/exclude only demonstrably invalid records."
+    },
+    {
+      "Issue": "Positive passengers with zero/nonpositive seats",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Potential reporting inconsistency",
+      "RecommendedTreatment": "Investigate before modeling; do not silently impute a denominator."
+    },
+    {
+      "Issue": "Load factor below 0",
+      "Count": 0,
+      "PercentOfTrainingRows": 0.0,
+      "Interpretation": "Logically invalid if present",
+      "RecommendedTreatment": "Investigate source records."
+    },
+    {
+      "Issue": "Load factor above 1",
+      "Count": 38,
+      "PercentOfTrainingRows": 0.0035761239145758105,
+      "Interpretation": "Potential aggregation/reporting inconsistency",
+      "RecommendedTreatment": "Review before deciding whether to cap, correct, or exclude; do not automatically delete."
+    },
+    {
+      "Issue": "Rows that follow a gap of more than one month within a carrier-route series",
+      "Count": 55165,
+      "PercentOfTrainingRows": 5.191496730199331,
+      "Interpretation": "Unbalanced-panel continuity issue affecting 19,240 training series",
+      "RecommendedTreatment": "Create lag/rolling features only when exact prior periods exist; preserve missing-history indicators."
+    },
+    {
+      "Issue": "Rows with at least one missing candidate predictor",
+      "Count": 1433,
+      "PercentOfTrainingRows": 0.13485751498913517,
+      "Interpretation": "Missing-feature issue",
+      "RecommendedTreatment": "Fit any imputation rules on training data only and apply unchanged to validation/test later."
+    }
+  ],
+  "key_findings": [
+    {
+      "Finding": "Structural target availability",
+      "Evidence": "316,490 of 1,882,779 carrier-route-month rows (16.81%) do not have an exact observed next-month target. These rows are excluded from supervised modeling rather than imputed."
+    },
+    {
+      "Finding": "Target distribution",
+      "Evidence": "In training, target mean is 5,048.63, median is 2,479.00, and skewness is 3.46. mean/median gap and skewness quantify demand asymmetry."
+    },
+    {
+      "Finding": "Strongest numeric relationship",
+      "Evidence": "Passengers has largest absolute Pearson correlation with next-month target (0.977)."
+    },
+    {
+      "Finding": "Seasonality",
+      "Evidence": "Average next-month demand is highest in Oct (5,538.9) and lowest in Jan (4,303.1) in training partition."
+    },
+    {
+      "Finding": "Time-regime variation",
+      "Evidence": "lowest aggregate training demand occurs in 2020-04, with 2,858,797 target passengers, showing a material time-regime shock."
+    },
+    {
+      "Finding": "Unbalanced carrier-route panel",
+      "Evidence": "55,165 training observations follow a gap longer than one month in their carrier-route series, so future lag/rolling features must enforce exact calendar continuity."
+    }
+  ],
+  "preprocessing_recommendations": [
+    {
+      "Priority": 1,
+      "Recommendation": "Preserve chronological month-based split and never randomly shuffle observations across time.",
+      "Rationale": "project predicts future demand; temporal leakage would inflate validation/test performance."
+    },
+    {
+      "Priority": 2,
+      "Recommendation": "Do not impute missing target values; exclude rows for which exact next-month outcome is unavailable.",
+      "Rationale": "supervised outcome is unknown, not merely a missing predictor."
+    },
+    {
+      "Priority": 3,
+      "Recommendation": "Fit all predictor imputation, encoding, scaling, and transformation rules on training data only.",
+      "Rationale": "Using validation/test distributions to design preprocessing leaks information from future periods."
+    },
+    {
+      "Priority": 4,
+      "Recommendation": "Represent carrier/origin/destination categorical information with a modeling-appropriate encoding learned from training data.",
+      "Rationale": "These are high-cardinality identifiers and cannot be passed as raw strings to most regression estimators."
+    },
+    {
+      "Priority": 5,
+      "Recommendation": "Consider log1p target modeling, robust losses, or tree-based models rather than deleting legitimate high-volume routes as outliers.",
+      "Rationale": "Route-month passenger demand is expected to be strongly right-skewed and operational extremes may be genuine rather than errors."
+    },
+    {
+      "Priority": 6,
+      "Recommendation": "Engineer lags/rolling features only from information available at or before forecast origin, with explicit gap handling.",
+      "Rationale": "carrier-route panel is unbalanced; naive shift/rolling operations can silently bridge missing months."
+    },
+    {
+      "Priority": 7,
+      "Recommendation": "Consider calendar seasonality and a pandemic/regime indicator during feature engineering/model comparison.",
+      "Rationale": "time series spans materially different demand regimes and seasonal patterns."
+    }
+  ]
+}

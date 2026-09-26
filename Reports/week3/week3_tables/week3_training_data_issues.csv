@@ -1,0 +1,13 @@
+Issue,Count,PercentOfTrainingRows,Interpretation,RecommendedTreatment
+Duplicate carrier-route-month keys,0,0.0,Data-integrity check,Investigate duplicates before modeling; Week 2 aggregation should normally make this zero.
+Negative values in TargetPassengersNextMonth,0,0.0,Logically invalid if present,Trace back to source and correct/exclude only demonstrably invalid records.
+Negative values in Passengers,0,0.0,Logically invalid if present,Trace back to source and correct/exclude only demonstrably invalid records.
+Negative values in Seats,0,0.0,Logically invalid if present,Trace back to source and correct/exclude only demonstrably invalid records.
+Negative values in DepScheduled,0,0.0,Logically invalid if present,Trace back to source and correct/exclude only demonstrably invalid records.
+Negative values in DepPerformed,0,0.0,Logically invalid if present,Trace back to source and correct/exclude only demonstrably invalid records.
+Negative values in Distance,0,0.0,Logically invalid if present,Trace back to source and correct/exclude only demonstrably invalid records.
+Positive passengers with zero/nonpositive seats,0,0.0,Potential reporting inconsistency,Investigate before modeling; do not silently impute a denominator.
+Load factor below 0,0,0.0,Logically invalid if present,Investigate source records.
+Load factor above 1,38,0.0035761239145758105,Potential aggregation/reporting inconsistency,"Review before deciding whether to cap, correct, or exclude; do not automatically delete."
+Rows that follow a gap of more than one month within a carrier-route series,55165,5.191496730199331,"Unbalanced-panel continuity issue affecting 19,240 training series",Create lag/rolling features only when exact prior periods exist; preserve missing-history indicators.
+Rows with at least one missing candidate predictor,1433,0.13485751498913517,Missing-feature issue,Fit any imputation rules on training data only and apply unchanged to validation/test later.

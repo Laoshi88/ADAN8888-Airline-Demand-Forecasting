@@ -1,0 +1,8 @@
+Priority,Recommendation,Rationale
+1,Preserve chronological month-based split and never randomly shuffle observations across time.,project predicts future demand; temporal leakage would inflate validation/test performance.
+2,Do not impute missing target values; exclude rows for which exact next-month outcome is unavailable.,"supervised outcome is unknown, not merely a missing predictor."
+3,"Fit all predictor imputation, encoding, scaling, and transformation rules on training data only.",Using validation/test distributions to design preprocessing leaks information from future periods.
+4,Represent carrier/origin/destination categorical information with a modeling-appropriate encoding learned from training data.,These are high-cardinality identifiers and cannot be passed as raw strings to most regression estimators.
+5,"Consider log1p target modeling, robust losses, or tree-based models rather than deleting legitimate high-volume routes as outliers.",Route-month passenger demand is expected to be strongly right-skewed and operational extremes may be genuine rather than errors.
+6,"Engineer lags/rolling features only from information available at or before forecast origin, with explicit gap handling.",carrier-route panel is unbalanced; naive shift/rolling operations can silently bridge missing months.
+7,Consider calendar seasonality and a pandemic/regime indicator during feature engineering/model comparison.,time series spans materially different demand regimes and seasonal patterns.

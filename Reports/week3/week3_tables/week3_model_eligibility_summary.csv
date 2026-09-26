@@ -1,0 +1,8 @@
+Metric,Value
+Carrier-route-month rows before target eligibility,1882779.0
+Rows with missing reference month,0.0
+Rows with missing next-month target,316490.0
+Rows with negative next-month target,0.0
+Rows eligible for Week 3 splitting/modeling,1566289.0
+Percent of rows eligible,83.1903
+Percent missing next-month target,16.8097

@@ -1,0 +1,11 @@
+Variable,MissingCount,MissingPercent,UniqueValues,DataType
+LoadFactor,1413,0.13297534450777948,624318,float64
+UniqueCarrier,20,0.0018821704813556897,137,string
+DepPerformed,0,0.0,833,float64
+DepScheduled,0,0.0,900,float64
+Dest,0,0.0,806,string
+Distance,0,0.0,1995,float64
+Origin,0,0.0,802,string
+Passengers,0,0.0,44675,float64
+Seats,0,0.0,50632,float64
+TargetPassengersNextMonth,0,0.0,44697,float64

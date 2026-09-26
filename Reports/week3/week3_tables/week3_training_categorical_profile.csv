@@ -1,0 +1,5 @@
+Variable,UniqueValues,MissingCount,MostFrequentValue,MostFrequentCount,MostFrequentPercent
+UniqueCarrier,137,20,WN,125988,11.856544730252033
+Origin,802,0,ORD,44913,4.226696141456404
+Dest,806,0,ORD,45190,4.252764202623181
+Route,14095,0,LAS→LAX,773,0.07274588910439742

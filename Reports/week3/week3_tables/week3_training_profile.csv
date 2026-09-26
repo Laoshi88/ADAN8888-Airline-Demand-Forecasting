@@ -1,0 +1,9 @@
+Metric,Value
+Training rows,1062603
+Training columns,26
+First training forecast month,2015-02-01 00:00:00
+Last training forecast month,2022-12-01 00:00:00
+Training forecast months,95
+Unique carriers in training,137
+Unique directional routes in training,14095
+Unique carrier-route series in training,35388

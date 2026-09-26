@@ -1,0 +1,7 @@
+Finding,Evidence
+Structural target availability,"316,490 of 1,882,779 carrier-route-month rows (16.81%) do not have an exact observed next-month target. These rows are excluded from supervised modeling rather than imputed."
+Target distribution,"In training, target mean is 5,048.63, median is 2,479.00, and skewness is 3.46. mean/median gap and skewness quantify demand asymmetry."
+Strongest numeric relationship,Passengers has largest absolute Pearson correlation with next-month target (0.977).
+Seasonality,"Average next-month demand is highest in Oct (5,538.9) and lowest in Jan (4,303.1) in training partition."
+Time-regime variation,"lowest aggregate training demand occurs in 2020-04, with 2,858,797 target passengers, showing a material time-regime shock."
+Unbalanced carrier-route panel,"55,165 training observations follow a gap longer than one month in their carrier-route series, so future lag/rolling features must enforce exact calendar continuity."
