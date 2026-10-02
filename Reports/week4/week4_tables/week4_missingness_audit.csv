@@ -1,0 +1,16 @@
+Split,Variable,MissingBefore,MissingAfter
+Training,LoadFactor,1413,0
+Training,PassengerLag1,90553,0
+Training,PassengerLag2,135160,0
+Training,PassengerRolling3Mean,156806,0
+Training,ScheduleCompletionRate,91063,0
+Validation,LoadFactor,270,0
+Validation,PassengerLag1,17010,0
+Validation,PassengerLag2,25059,0
+Validation,PassengerRolling3Mean,29477,0
+Validation,ScheduleCompletionRate,7448,0
+Test,LoadFactor,186,0
+Test,PassengerLag1,18183,0
+Test,PassengerLag2,25682,0
+Test,PassengerRolling3Mean,30715,0
+Test,ScheduleCompletionRate,7801,0

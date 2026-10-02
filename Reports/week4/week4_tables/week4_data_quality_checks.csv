@@ -1,0 +1,13 @@
+Split,Check,Passed,Value
+Training,Row count retained,True,1062603
+Training,No missing model features,True,0
+Training,No infinite model features,True,0
+Training,Target remains observed,True,0
+Validation,Row count retained,True,239395
+Validation,No missing model features,True,0
+Validation,No infinite model features,True,0
+Validation,Target remains observed,True,0
+Test,Row count retained,True,264291
+Test,No missing model features,True,0
+Test,No infinite model features,True,0
+Test,Target remains observed,True,0

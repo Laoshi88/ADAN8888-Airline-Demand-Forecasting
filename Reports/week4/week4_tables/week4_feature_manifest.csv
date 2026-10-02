@@ -1,0 +1,26 @@
+Feature,Family,Treatment
+z_PassengersLog1p,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_SeatsLog1p,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_DepScheduledLog1p,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_DepPerformedLog1p,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_PassengerLag1Log1p,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_PassengerLag2Log1p,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_PassengerRolling3MeanLog1p,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_Distance,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_LoadFactor,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_ScheduleCompletionRate,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+z_TrendMonth,Standardized numeric,Training-median imputation where needed; optional log1p; StandardScaler fit on training only.
+TargetMonthSin,Calendar seasonality,Deterministic cyclical encoding of known forecast calendar month.
+TargetMonthCos,Calendar seasonality,Deterministic cyclical encoding of known forecast calendar month.
+UniqueCarrierFreq,Categorical encoding,Training-only frequency encoding; unseen holdout category maps to 0.
+OriginFreq,Categorical encoding,Training-only frequency encoding; unseen holdout category maps to 0.
+DestFreq,Categorical encoding,Training-only frequency encoding; unseen holdout category maps to 0.
+LoadFactorMissing,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.
+LoadFactorInvalid,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.
+PassengerLag1Missing,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.
+PassengerLag2Missing,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.
+PassengerRolling3MeanMissing,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.
+ScheduleCompletionRateMissing,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.
+UniqueCarrierMissing,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.
+OriginMissing,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.
+DestMissing,Missingness/data-quality indicator,Binary indicator preserves information about missing/invalid source state.

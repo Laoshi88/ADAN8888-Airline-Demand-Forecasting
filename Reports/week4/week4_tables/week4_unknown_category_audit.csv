@@ -1,0 +1,10 @@
+Split,Variable,Rows,UnknownCategoryRows,UnknownCategoryPercent
+Training,UniqueCarrier,1062603,0,0.0
+Training,Origin,1062603,0,0.0
+Training,Dest,1062603,0,0.0
+Validation,UniqueCarrier,239395,119,0.049708640531339415
+Validation,Origin,239395,79,0.03299985379811608
+Validation,Dest,239395,90,0.0375947701497525
+Test,UniqueCarrier,264291,146,0.05524213840047523
+Test,Origin,264291,347,0.13129467140386922
+Test,Dest,264291,350,0.1324297838367557

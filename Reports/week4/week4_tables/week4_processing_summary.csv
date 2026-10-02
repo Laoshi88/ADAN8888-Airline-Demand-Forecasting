@@ -1,0 +1,8 @@
+Step,Processing,Implementation,LeakageControl
+1,Preserve Week 3 chronological split,Same ordered forecast-month 70/15/15 split; no random shuffling.,Future months remain isolated from training.
+2,Treat invalid/missing numeric values,Out-of-range load factor and defensive negative-value checks become missing; numeric medians learned on training only.,Validation/test values do not influence imputation statistics.
+3,Engineer exact-calendar history,"Passenger lag-1, lag-2, and 3-month rolling mean use exact prior months only; missing-history indicators are retained.",No future values and no silent bridging across missing months.
+4,Transform skewed numeric variables,log1p for demand/capacity/count features; raw target preserved and TargetLog1p supplied as an alternative target.,Transform is deterministic and target is never used to construct predictors.
+5,Encode high-cardinality categoricals,"Carrier, origin, and destination are frequency-encoded using training frequencies; unseen holdout levels map to 0.",Holdout category frequencies are never learned.
+6,Encode seasonality and trend,Sine/cosine forecast-month features and a deterministic month trend are created.,Uses calendar information known at forecast time.
+7,Standardize numeric model inputs,StandardScaler parameters are fit on training only and frozen for validation/test.,Future means/variances never enter training transformations.
