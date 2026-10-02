@@ -1,6 +1,0 @@
-__pycache__/
-.ipynb_checkpoints/
-.venv/
-.env
-.DS_Store
-# Do not ignore the Week 1 raw dataset if the instructor requires it in the private repo.
