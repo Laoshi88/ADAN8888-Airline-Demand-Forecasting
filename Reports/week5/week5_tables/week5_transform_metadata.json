@@ -1,0 +1,101 @@
+{
+  "input_features": [
+    "Passengers",
+    "Seats",
+    "DepScheduled",
+    "DepPerformed",
+    "Distance",
+    "SeatsPerFlight",
+    "PassengersPerFlight",
+    "UnusedSeats",
+    "PassengerMiles"
+  ],
+  "pca_input_features": [
+    "Passengers",
+    "Seats",
+    "DepScheduled",
+    "DepPerformed",
+    "Distance",
+    "SeatsPerFlight",
+    "PassengersPerFlight",
+    "UnusedSeats",
+    "PassengerMiles"
+  ],
+  "log_transform": "log1p of nonnegative values",
+  "training_medians_of_log_inputs": {
+    "Passengers": 7.827240901752812,
+    "Seats": 8.137688184977605,
+    "DepScheduled": 3.4657359027997265,
+    "DepPerformed": 3.4965075614664802,
+    "Distance": 6.38856140554563,
+    "SeatsPerFlight": 4.364567413302113,
+    "PassengersPerFlight": 4.216562194946349,
+    "UnusedSeats": 6.452048954437226,
+    "PassengerMiles": 14.17894877929429
+  },
+  "training_scaler_mean": [
+    7.311347164007461,
+    7.747114884587718,
+    3.3187298567503847,
+    3.4969024192194538,
+    6.152644781441528,
+    4.351143043164321,
+    3.955393035342023,
+    6.2158838979397295,
+    13.368100875954127
+  ],
+  "training_scaler_scale": [
+    2.1540086784775365,
+    1.8028001360813692,
+    1.4592055389605814,
+    1.1542480845251546,
+    1.1320993942358473,
+    0.9549702828689748,
+    1.2472508115497252,
+    1.645492907069631,
+    3.2781412499781655
+  ],
+  "pca_components": [
+    [
+      0.38045368821284686,
+      0.37949164616828956,
+      0.32462644163020843,
+      0.2897302823654645,
+      0.2660818368596433,
+      0.3156031415584228,
+      0.32518550029925186,
+      0.3269315578126696,
+      0.3726665782194843
+    ],
+    [
+      0.052277889568787386,
+      0.13579820903788478,
+      0.3190024097158094,
+      0.5048666065760131,
+      -0.46061157968566024,
+      -0.39743360399856287,
+      -0.38069587777309044,
+      0.30102880128454584,
+      -0.12848678282307546
+    ]
+  ],
+  "pca_training_center": [
+    -1.797415284657722e-16,
+    -3.6633035325405e-16,
+    -2.5334996393270745e-16,
+    1.0784491707946331e-16,
+    -1.3694592645011215e-17,
+    3.9714318670532524e-16,
+    -3.1155198267400516e-16,
+    1.2325133380510094e-16,
+    -3.9885501078595163e-16
+  ],
+  "pca_explained_variance_ratios": [
+    0.737486750862265,
+    0.17813298204787062
+  ],
+  "variance_retained_two_components_percent": 91.56197329101357,
+  "components_for_95_percent_training_variance": 4,
+  "fit_scope": "Training only",
+  "augmentation": "None; no synthetic observations were added"
+}

@@ -1,0 +1,7 @@
+Metric,Value
+Original numeric candidate predictors,9.0
+Nonconstant training predictors,9.0
+PCA components retained,2.0
+Percent training variance captured by PC1+PC2,91.562
+PCA components needed for 95% training variance,4.0
+Synthetic observations generated,0.0

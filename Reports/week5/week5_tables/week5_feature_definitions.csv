@@ -1,0 +1,5 @@
+Feature,Formula,Interpretation
+SeatsPerFlight,Seats / DepPerformed,Average seats available per performed departure
+PassengersPerFlight,Passengers / DepPerformed,Average passengers carried per performed departure
+UnusedSeats,"Seats - Passengers, if nonnegative",Unused reported capacity for the current month
+PassengerMiles,Passengers * Distance,Passenger-mile exposure combining current demand and distance

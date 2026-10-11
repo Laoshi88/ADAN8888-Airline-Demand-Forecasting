@@ -1,0 +1,41 @@
+# ============================================================
+# Airline Passenger Demand Forecasting
+# Git Ignore Rules
+# ============================================================
+
+# Python compiled files and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Testing and development caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# VS Code local workspace settings
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Microsoft Office temporary files
+~$*

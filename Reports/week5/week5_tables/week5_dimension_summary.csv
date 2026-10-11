@@ -1,0 +1,4 @@
+Step,Columns
+Original + cross-field numeric predictors,9
+Nonconstant training predictors,9
+PCA reduced representation,2
