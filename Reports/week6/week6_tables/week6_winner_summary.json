@@ -1,0 +1,19 @@
+{
+  "SelectedModel": "Ridge_A",
+  "RidgeAlpha": 1.0,
+  "PrimarySelectionMetric": "Lowest validation MAE, with RMSE/alpha as tie-breakers",
+  "ValidationMAE": 3257.1774025706486,
+  "ValidationRMSE": 5887.098485483514,
+  "ValidationR2": 0.47307011114812614,
+  "TrainMAE": 3331.9590956645807,
+  "TrainRMSE": 5787.1331386958445,
+  "TrainR2": 0.4435429239328008,
+  "InputFeatures": [
+    "PC1",
+    "PC2"
+  ],
+  "PredictionPostprocessing": "clip at 0 passengers for business-plausible counts",
+  "OutcomeScale": "original passengers, not log scale",
+  "DataSource": "Week 5 source (reconstructed full PCA from official BTS ZIPs)",
+  "TestUsedForFittingOrSelection": false
+}
