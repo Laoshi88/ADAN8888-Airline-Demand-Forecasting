@@ -1,0 +1,31 @@
+{
+  "SelectedModel": "HGB_C",
+  "SelectionRule": "Lowest validation MAE; then validation RMSE; then simpler leaf/iteration configuration",
+  "Hyperparameters": {
+    "learning_rate": 0.05,
+    "max_iter": 250,
+    "max_leaf_nodes": 31
+  },
+  "FixedHyperparameters": {
+    "loss": "squared_error",
+    "min_samples_leaf": 50,
+    "l2_regularization": 1.0,
+    "early_stopping": false,
+    "random_state": 42
+  },
+  "InputFeatures": [
+    "PC1",
+    "PC2"
+  ],
+  "TrainingMAE": 1159.01686016324,
+  "ValidationMAE": 1161.0682061257894,
+  "TrainingRMSE": 2247.904013325419,
+  "ValidationRMSE": 2051.7879009918233,
+  "TrainingR2": 0.9160423552133816,
+  "ValidationR2": 0.9359948145478167,
+  "NegativePredictionPolicy": "Clip to zero for all evaluated models",
+  "InputProvenance": "Week 5 source (reconstructed full PCA from official BTS ZIPs)",
+  "EvaluatedTestSet": false,
+  "Week6PriorValidationMAEReference": 3257.1774025706486,
+  "Week6ReferenceSource": "Previously supplied Week 6 notebook results; not used for Week 7 winner selection"
+}
