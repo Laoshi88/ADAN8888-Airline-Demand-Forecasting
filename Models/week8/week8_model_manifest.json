@@ -1,0 +1,41 @@
+{
+  "SelectedModel": "MLP_B",
+  "SelectionRule": "Minimum validation MAE; tie: minimum validation RMSE; then fewer trainable parameters",
+  "ModelFamily": "Multilayer perceptron neural-network regressor",
+  "InputFeatures": [
+    "PC1",
+    "PC2"
+  ],
+  "SelectedHiddenLayers": [
+    64,
+    32
+  ],
+  "FixedHyperparameters": {
+    "activation": "relu",
+    "solver": "adam",
+    "alpha": 0.001,
+    "batch_size": 4096,
+    "learning_rate_init": 0.001,
+    "max_iter": 45,
+    "tol": 0.0001,
+    "n_iter_no_change": 10,
+    "early_stopping": false,
+    "random_state": 42,
+    "shuffle": true
+  },
+  "TargetScaler": "StandardScaler fitted using training targets only",
+  "InputScaler": "StandardScaler fitted on training PC1 and PC2 only",
+  "TrainingRows": 1062603,
+  "ValidationRows": 239395,
+  "TrainingMAE": 1161.6277673684194,
+  "ValidationMAE": 1143.1951956789312,
+  "TrainingRMSE": 2236.2032895760112,
+  "ValidationRMSE": 1988.7779681224358,
+  "TrainingR2": 0.9169141082004038,
+  "ValidationR2": 0.9398656208469385,
+  "NegativePredictionPolicy": "Clip negative predictions to 0 after inverse target transform",
+  "InputProvenance": "Week 5 source (reconstructed full PCA from official BTS ZIPs)",
+  "EvaluatedTestSet": false,
+  "Week7ValidationMAEReference": 1161.0682061257894,
+  "ReferenceUse": "Context only; no Week 7 metrics used for Week 8 model selection"
+}

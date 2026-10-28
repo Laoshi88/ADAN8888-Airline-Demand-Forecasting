@@ -1,8 +1,6 @@
-"""Fast, synthetic-data-only smoke test of Week 7 fitting/export.
-
-This test creates no synthetic datasets in the user's research pipeline. It uses
-small artificial data only to verify code executes and artifacts have correct shape.
+"""Synthetic smoke test ONLY; not mean to generate / report genuine BTS metrics.
 """
+
 from pathlib import Path
 import tempfile
 import numpy as np

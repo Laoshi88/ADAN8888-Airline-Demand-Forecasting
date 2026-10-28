@@ -1,80 +1,66 @@
-
-# Week 7 — Second Modeling Approach: Histogram Gradient Boosting Regression
+# Week 8 — Third Modeling Approach: Multilayer Perceptron Neural Network
 
 ## What is included in merge
 
-- `Src/week7_src_hist_gradient_boosting.py` — Week 7 model training, hyperparameter evaluation, and validation source.
-- `Notebooks/week7_notebook_model_training_tuning.ipynb` — same modeling pipeline in an explained Jupyter workflow.
-- `Reports/week7/week7_report_second_modeling_approach.docx` — formatted written report.
-- `tests/test_week7_smoke.py` — synthetic-data test for validating the Week 7 code without using actual BTS data.
-- `Models/week7/README.md` — documentation for the saved winning model and model manifest.
+- `Src/week8_src_mlp_neural_network.py` — reusable Week 8 neural-network training, evaluation, ranking, and model-export source.
+- `Notebooks/week8_notebook_mlp_model_training_tuning.ipynb` — documented Jupyter workflow calling the same reusable source.
+- `Reports/week8/week8_report_third_modeling_approach.docx` — formatted written report.
+- `tests/test_week8_smoke.py` — optional synthetic-data-only code test.
+- `Models/week8/README.md` — saved-model inference requirements.
+- `requirements_week8_additions.txt` — required dependencies beyond existing project environment.
 
 ## Modeling design
 
-- **Method**: Histogram Gradient Boosting Regression, a nonlinear ensemble of decision trees using Week 5 `PC1`/`PC2` predictors.
-- **Hyperparameter variants**:
-  - `HGB_A` — learning_rate = 0.05, max_iter = 100, max_leaf_nodes = 15.
-  - `HGB_B` — learning_rate = 0.05, max_iter = 250, max_leaf_nodes = 15.
-  - `HGB_C` — learning_rate = 0.05, max_iter = 250, max_leaf_nodes = 31.
-- **Fixed hyperparameters**: min_samples_leaf = 50, l2_regularization = 1.0, random_state = 42, and early_stopping = False.
-- **Metrics**: training and validation MAE, RMSE, and R² on the original passenger-count scale, with a 0-passenger prediction floor.
-- **Winner criterion**: *lowest validation MAE*, then validation RMSE, followed by the simpler leaf/iteration configuration for exact ties.
-- **Model complexity**: HGB_A versus HGB_B evaluates additional boosting iterations; HGB_B versus HGB_C evaluates greater tree complexity.
-- **Test set**: not scored, searched, or used for fitting or model selection; reserved for later final evaluation.
-- **Full data**: Week 5 small samples are **not** used. Week 7 reconstructs the full Week 5 PCA transformations through the Week 6 source and original `Data/raw` BTS archives, preserving the Week 3 chronological 70%/15%/15% forecast-month split.
-- **Week 6 benchmark**: Ridge_A (α = 1), with validation MAE of 3,257.18 passengers, provides a reference for comparing the new modeling approach.
+- **Method**: feedforward Multi-Layer Perceptron neural-network regression (`MLPRegressor`) on Week 5 `PC1`/`PC2`. A third model family distinct from Weeks 6–7.
+- **Three hyperparameter variants**: `MLP_A` hidden layers `(32,16)`, `MLP_B` `(64,32)`, and `MLP_C` `(64,32,16)`.
+- **Fixed settings**: ReLU, Adam solver, `alpha=0.001`, `learning_rate_init=0.001`, `batch_size=4096`, `max_iter=45`, `random_state=42`, `early_stopping=False`.
+- **Training-fitted preprocessing**: `StandardScaler` for PC1/PC2 and separate training-fitted target `StandardScaler` inside `TransformedTargetRegressor`. Week 5 prior transformation remains training-fitted too.
+- **Metrics**: Training and validation MAE, RMSE, R² in **passenger units**, with zero floor for negative predicted passenger counts.
+- **Winner criterion**: *lowest validation MAE*, then validation RMSE, then fewer trainable parameters for exact ties. No training/validation data combined for fitting in Week 8.
+- **Test set**: not used or evaluated; saved for a later final model assessment after model selection.
+- **Full data**: Uses the original BTS `Data/raw/` ZIPs and the full Week 5 PCA pipeline via Week 6's adapter. It does **not** evaluate only Week 5 sample/preview rows.
+- **Week 7 reference**: HGB_C had a validation MAE of 1,161.07 passengers. This is a reference only; it must not change the Week 8 three-way selection.
+- **Computing**: scikit-learn's MLP uses CPU (no GPU support). The full-data training may be compute-intensive.
 
-## Step-by-step VS Code / PowerShell workflow
+## VS Code / PowerShell workflow
 
-1. Check the prerequisites. All five checks should be `True`:
+1. Verify prerequisites. All checks should be `True`:
 
    ```powershell
    Test-Path .\Src\week2_src_t100_ingest_explore.py
    Test-Path .\Src\week3_src_eda_split.py
    Test-Path .\Src\week5_src_features_dimensionality.py
    Test-Path .\Src\week6_src_ridge_models.py
-   Test-Path .\Src\week7_src_hist_gradient_boosting.py
+   Test-Path .\Src\week8_src_mlp_neural_network.py
+   Test-Path .\Notebooks\week8_notebook_mlp_model_training_tuning.ipynb
    ```
 
-   The official annual T-100 ZIP files must still exist under `Data/raw/`.
+   Confirm the official BTS annual ZIP files are present under `Data/raw/`. Keep that source data unchanged.
 
-2. Install/check dependencies using the existing repository requirements:
+2. Install/check dependencies, and test the Week 8 Python source:
 
    ```powershell
    python -m pip install -r .\requirements.txt
-   python -c "import pandas, numpy, sklearn, matplotlib, joblib, threadpoolctl, nbformat; print('Week 7 dependencies OK')"
-   python -m py_compile .\Src\week7_src_hist_gradient_boosting.py
+   python -m pip install -r .\requirements_week8_additions.txt
+   python -c "import pandas,numpy,sklearn,matplotlib,joblib,threadpoolctl,nbformat; print('Week 8 dependencies OK')"
+   python -m py_compile .\Src\week8_src_mlp_neural_network.py
    ```
 
-   The source implementation requires pandas, NumPy, scikit-learn, matplotlib, joblib, and threadpoolctl.
-
-   To run the optional synthetic-data code test:
+   Optional small synthetic functionality test (**not real project metrics**):
 
    ```powershell
-   python .\tests\test_week7_smoke.py
+   python .\tests\test_week8_smoke.py
    ```
 
-   This test verifies functionality only. Its results must not be included in the academic report.
-
-3. Open `Notebooks/week7_notebook_model_training_tuning.ipynb`, select your previous Python kernel, click **Run All**, and wait until the final output says `All Week 7 checks passed.` and `===== WEEK 7 END =====`.
-
-   - To run only from the command line, use `python .\Src\week7_src_hist_gradient_boosting.py`.
-   - You do not need to run both the notebook and standalone Python file because they execute the same modeling workflow.
-
-4. Verify the new output folders:
+3. Verify the generated outputs:
 
    ```powershell
-   Get-ChildItem .\Reports\week7\week7_tables -File
-   Get-ChildItem .\Reports\week7\week7_figures -File
-   Get-ChildItem .\Models\week7 -File
-   Get-Content .\Reports\week7\week7_verified_results_for_report.md
+   Get-ChildItem .\Reports\week8\week8_tables -File
+   Get-ChildItem .\Reports\week8\week8_figures -File
+   Get-ChildItem .\Models\week8 -File
+   Import-Csv .\Reports\week8\week8_tables\week8_three_model_comparison.csv | Format-Table -AutoSize
+   Get-Content .\Reports\week8\week8_verified_results_for_report.md
    ```
 
-   Review the three-model comparison:
-
-   ```powershell
-   Import-Csv .\Reports\week7\week7_tables\week7_three_model_comparison.csv |
-   Format-Table -AutoSize
-   ```
-
-   Confirm that all three configurations have training and validation MAE, RMSE, and R² results.
+   Comparison CSV contains **three rows** and the long-format CSV **six rows**. 
+   Check all six training/validation metrics, the `week8_winner_summary.json` winner, and `EvaluatedTestSet: false`.
