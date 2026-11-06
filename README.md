@@ -66,7 +66,7 @@
 
    If the saved joblib model cannot be loaded because of a scikit-learn version mismatch, restore the **same compatible environment used in Week 8** rather than silently upgrading model code or retraining.
 
-3. Optional code-integrity test, **never used for coursework results**:
+3. Optional code-integrity test:
 
    ```powershell
    python .\tests\test_week9_smoke.py
@@ -82,7 +82,7 @@
    Get-Content .\Reports\week9\week9_tables\week9_selection_lock.json
    ```
 
-   The original Week 6–8 CSV files are preferred. If one is absent, the program uses its included historical reference. If a local source conflicts materially with the reference, the script stops and won't combining inconsistent metrics**. 
+   The original Week 6–8 CSV files are preferred. If one is absent, program uses its included historical reference. If a local source conflicts materially with reference, script stops and won't combining inconsistent metrics**. 
 
 5. **Run the Week 9 notebook:** open `Notebooks/week9_notebook_select_winner_final_test.ipynb`, select the same Python kernel used in Week 8, click **Run All**.
 
@@ -99,18 +99,4 @@
 
    After execution output folders contain nine-model comparison and validation ranking CSVs, selection lock JSON, final winning-model train/validation/test table, test summary JSON, test monthly MAE, four figures, and the final model-pointer manifest.
 
-7.  Commit and push **one command at a time** from the correct Git repo:
-
-    ```powershell
-    git status
-    git add -A
-    git status
-    git diff --cached --stat
-    git commit -m "Week 9: select nine-model winner and evaluate held-out test"
-    git pull --rebase origin main
-    git push origin main
-    git status
-    git --no-pager log --oneline --decorate -5
-    ```
-
-    Repository: https://github.com/Laoshi88/ADAN8888-Airline-Demand-Forecasting
+Repository: https://github.com/Laoshi88/ADAN8888-Airline-Demand-Forecasting
