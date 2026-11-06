@@ -3,13 +3,22 @@
 ## What is included in merge
 
 - `Src/week9_src_select_and_final_test.py` — nine-model comparison, selection lock, bias–variance diagnostic, and final one-time test evaluation.
-- `Notebooks/week9_notebook_select_winner_final_test.ipynb` — same workflow explained in a Jupyter notebook.
+- `Notebooks/week9_notebook_select_winner_final_test.ipynb` — same workflow explained in an organized Jupyter notebook.
 - `Reports/week9/week9_report_select_winning_model.docx` — formatted written report.
 - `Reports/week9/week9_reference_metrics/week9_verified_prior_week6_to_week8_metrics.csv` — audited historical Week 6–8 scores; Ridge values shown to the original Week 6 notebook's three-decimal precision.
 - `Reports/week9/week9_reference_metrics/week9_figure_*.png` — pre-run illustrations generated from prior real validation results, **not** test results. Actual run exports charts under `Reports/week9/week9_figures/`.
 - `Models/week9/README.md` — final saved-model pointer and expected manifest.
 - `tests/test_week9_smoke.py` — isolated synthetic-only integrity test for the model-selection lock, validation gate, and test idempotence.
-- `requirements_week9_additions.txt` — additional dependencies for notebook export.
+- `requirements_week9_additions.txt` — additional dependencies for notebook export. 
+- `Reports/week9/week9_report_select_winning_model.docx` — formatted written report.
+- `Reports/week9/week9_report_select_winning_model.pdf` — rendered and visually checked PDF reference copy of report.
+- `Reports/week9/week9_notebook_select_winner_final_test.pdf` — executed notebook PDF supplied from local run.
+- `Reports/week9/week9_tables/` — nine-model comparison, ranking, selection lock, final-test summary, 3-partition metrics and 21-month test error CSV.
+- `Reports/week9/week9_figures/` — all four original Week 9 figures from the actual run.
+- `Reports/week9/week9_reference_metrics/` — reference metrics and pre-run graphics required by the existing Week 9 source; retain these in the repository.
+- `Reports/week9/week9_verified_results_for_report.md` — reconciled metrics, interpretation, provenance, and outstanding checks.
+- `Reports/week9/week9_discussion_initial_post.md` — post-run discussion draft with the validated final-test result.
+- `Reports/week9/week9_submission_checklist.md` — remaining local verification and submission items.
 
 ## Modeling and evaluation design
 
@@ -20,6 +29,16 @@
 - **No retuning after test:** one final evaluation of the saved, prior-training-fitted model. The source reuses saved results on repeated notebook runs.
 - **Bias–variance diagnostic:** training/validation MSE for all nine configurations, with x-axis ordered by nominal capacity *within* families; cross-family complexity order is an approximation, not a formal global ranking. The gap is not a formal bias–variance decomposition.
 - **Train/validation/test partitions:** previously established 1,062,603 / 239,395 / 264,291 eligible rows; all numerical preprocessing remains training-fitted.
+
+## Verified results
+
+- **Winner:** Week 8 `MLP_B`, hidden layers `(64, 32)`, selected by minimum validation MAE from nine prior configurations.
+- **Validation MAE:** 1,143.20 passengers.
+- **Final held-out test:** 264,291 rows, 21 forecast months from September 2024 through May 2026.
+- **Test MAE:** 1,122.50 passengers; **Test RMSE:** 1,935.24 passengers; **Test R²:** 0.9390.
+- **Train/validation/test MAE:** 1,161.63 / 1,143.20 / 1,122.50 passengers.
+- **Model integrity:** selection lock, validation-reproduction gate, and test-no-refit flags are verified in the supplied result JSONs. Test evaluation need not be repeated.
+- **Limitations:** model quality is promising in retrospective data but requires an operational acceptance threshold and publication-lag verification before deployment.
 
 ## VS Code / PowerShell workflow
 
