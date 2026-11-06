@@ -1,4 +1,4 @@
-"""ADAN8888 Week 9: select among 9 PRIOR validation models, then final-test the winner.
+"""ADAN8888 Week 9: Select from 9 PRIOR validation models, then final-test the winner.
 
 Run from the repository root:
     python Src/week9_src_select_and_final_test.py
@@ -348,8 +348,7 @@ def write_report_values(root: Path, selection: Selection, test: dict | None):
         lines += ['## Final selected-model test results','',
                   f"Test MAE: **{test['FinalTestMAE']:,.2f}** passengers",
                   f"Test RMSE: **{test['FinalTestRMSE']:,.2f}** passengers",
-                  f"Test R²: **{test['FinalTestR2']:.4f}**",'',
-                  'Explain whether test performance meets a specified business-acceptance threshold; do not assert acceptability without one.']
+                  f"Test R²: **{test['FinalTestR2']:.4f}**"]
     else:
         lines += ['## Test results not yet executed','',
                   'After the selection lock is written, run the full Week 9 pipeline against the official source data. Do not invent test metrics.']

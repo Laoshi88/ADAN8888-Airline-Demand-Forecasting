@@ -23,5 +23,3 @@ Selection occurs before any test labels are accessed.
 Test MAE: **1,122.50** passengers
 Test RMSE: **1,935.24** passengers
 Test R²: **0.9390**
-
-Explain whether test performance meets a specified business-acceptance threshold; do not assert acceptability without one.
