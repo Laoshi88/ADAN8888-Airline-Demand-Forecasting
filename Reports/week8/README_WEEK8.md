@@ -52,7 +52,9 @@
    python .\tests\test_week8_smoke.py
    ```
 
-3. Verify the generated outputs:
+3. **Run the Week 8 notebook:** open `Notebooks/week8_notebook_mlp_model_training_tuning.ipynb`, select the same Python kernel used in Week 7, click **Run All**.
+
+4. Verify the generated outputs:
 
    ```powershell
    Get-ChildItem .\Reports\week8\week8_tables -File

@@ -1,0 +1,26 @@
+{
+  "SelectedModel": "MLP_B",
+  "SelectedModelArtifact": "Models/week8/week8_selected_mlp_neural_network.joblib",
+  "ComparisonDigest": "ee69b48cdfc878f473de04d2eefd86747b37a4df0036696097d58f51a49ed43c",
+  "TrainingRows": 1062603,
+  "ValidationRows": 239395,
+  "TestRows": 264291,
+  "ValidationConsistencyCheckPassed": true,
+  "RecomputedValidationMAE": 1143.1951956789312,
+  "RecomputedValidationRMSE": 1988.7779681224358,
+  "FinalTestMAE": 1122.5049447177594,
+  "FinalTestRMSE": 1935.2387403645407,
+  "FinalTestR2": 0.9390309037412072,
+  "TestEvaluatedAfterSelectionLock": true,
+  "TestLabelsUsedToSelectModel": false,
+  "RefitOnTestData": false,
+  "ModelRefittedOnTrainPlusValidation": false,
+  "TestEvaluationPolicy": "Evaluate locked, prior-training-fitted MLP_B on test only once",
+  "FrozenModelSha256": "99b0d3120bad805795a801f7bd6eed87e0e92932ae401af0cb100a7473d966de",
+  "InputFeatures": [
+    "PC1",
+    "PC2"
+  ],
+  "FeatureProvenance": "Week 5 training-fitted transformations; Week 8 training-only scalers",
+  "ModelRetainedFromWeek8": true
+}

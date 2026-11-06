@@ -1,66 +1,97 @@
-# Week 8 — Third Modeling Approach: Multilayer Perceptron Neural Network
+# Week 9 — Select the Winning Model and Final Test Evaluation
 
 ## What is included in merge
 
-- `Src/week8_src_mlp_neural_network.py` — reusable Week 8 neural-network training, evaluation, ranking, and model-export source.
-- `Notebooks/week8_notebook_mlp_model_training_tuning.ipynb` — documented Jupyter workflow calling the same reusable source.
-- `Reports/week8/week8_report_third_modeling_approach.docx` — formatted written report.
-- `tests/test_week8_smoke.py` — optional synthetic-data-only code test.
-- `Models/week8/README.md` — saved-model inference requirements.
-- `requirements_week8_additions.txt` — required dependencies beyond existing project environment.
+- `Src/week9_src_select_and_final_test.py` — nine-model comparison, selection lock, bias–variance diagnostic, and final one-time test evaluation.
+- `Notebooks/week9_notebook_select_winner_final_test.ipynb` — same workflow explained in a Jupyter notebook.
+- `Reports/week9/week9_report_select_winning_model.docx` — formatted written report.
+- `Reports/week9/week9_reference_metrics/week9_verified_prior_week6_to_week8_metrics.csv` — audited historical Week 6–8 scores; Ridge values shown to the original Week 6 notebook's three-decimal precision.
+- `Reports/week9/week9_reference_metrics/week9_figure_*.png` — pre-run illustrations generated from prior real validation results, **not** test results. Actual run exports charts under `Reports/week9/week9_figures/`.
+- `Models/week9/README.md` — final saved-model pointer and expected manifest.
+- `tests/test_week9_smoke.py` — isolated synthetic-only integrity test for the model-selection lock, validation gate, and test idempotence.
+- `requirements_week9_additions.txt` — additional dependencies for notebook export.
 
-## Modeling design
+## Modeling and evaluation design
 
-- **Method**: feedforward Multi-Layer Perceptron neural-network regression (`MLPRegressor`) on Week 5 `PC1`/`PC2`. A third model family distinct from Weeks 6–7.
-- **Three hyperparameter variants**: `MLP_A` hidden layers `(32,16)`, `MLP_B` `(64,32)`, and `MLP_C` `(64,32,16)`.
-- **Fixed settings**: ReLU, Adam solver, `alpha=0.001`, `learning_rate_init=0.001`, `batch_size=4096`, `max_iter=45`, `random_state=42`, `early_stopping=False`.
-- **Training-fitted preprocessing**: `StandardScaler` for PC1/PC2 and separate training-fitted target `StandardScaler` inside `TransformedTargetRegressor`. Week 5 prior transformation remains training-fitted too.
-- **Metrics**: Training and validation MAE, RMSE, R² in **passenger units**, with zero floor for negative predicted passenger counts.
-- **Winner criterion**: *lowest validation MAE*, then validation RMSE, then fewer trainable parameters for exact ties. No training/validation data combined for fitting in Week 8.
-- **Test set**: not used or evaluated; saved for a later final model assessment after model selection.
-- **Full data**: Uses the original BTS `Data/raw/` ZIPs and the full Week 5 PCA pipeline via Week 6's adapter. It does **not** evaluate only Week 5 sample/preview rows.
-- **Week 7 reference**: HGB_C had a validation MAE of 1,161.07 passengers. This is a reference only; it must not change the Week 8 three-way selection.
-- **Computing**: scikit-learn's MLP uses CPU (no GPU support). The full-data training may be compute-intensive.
+- **Candidates:** exactly nine previously trained configurations: Ridge_A/B/C, HGB_A/B/C, MLP_A/B/C.
+- **Winner rule:** lowest **validation MAE**, then lowest validation RMSE, then predeclared complexity ordering for exact ties.
+- **Final validation winner:** MLP_B (hidden layers 64,32), historical validation MAE 1,143.20 passengers.
+- **Test policy:** select and save the winner first; verify the saved model reproduces Week 8 validation MAE and RMSE; only then predict the 264,291 previously untouched test observations.
+- **No retuning after test:** one final evaluation of the saved, prior-training-fitted model. The source reuses saved results on repeated notebook runs.
+- **Bias–variance diagnostic:** training/validation MSE for all nine configurations, with x-axis ordered by nominal capacity *within* families; cross-family complexity order is an approximation, not a formal global ranking. The gap is not a formal bias–variance decomposition.
+- **Train/validation/test partitions:** previously established 1,062,603 / 239,395 / 264,291 eligible rows; all numerical preprocessing remains training-fitted.
 
 ## VS Code / PowerShell workflow
 
-1. Verify prerequisites. All checks should be `True`:
+1. Check the prerequisites. All should print `True`:
 
    ```powershell
-   Test-Path .\Src\week2_src_t100_ingest_explore.py
-   Test-Path .\Src\week3_src_eda_split.py
    Test-Path .\Src\week5_src_features_dimensionality.py
    Test-Path .\Src\week6_src_ridge_models.py
    Test-Path .\Src\week8_src_mlp_neural_network.py
-   Test-Path .\Notebooks\week8_notebook_mlp_model_training_tuning.ipynb
+   Test-Path .\Src\week9_src_select_and_final_test.py
+   Test-Path .\Reports\week6\week6_tables\week6_models_metrics_comparison.csv
+   Test-Path .\Reports\week7\week7_tables\week7_three_model_comparison.csv
+   Test-Path .\Reports\week8\week8_tables\week8_three_model_comparison.csv
+   Test-Path .\Models\week8\week8_selected_mlp_neural_network.joblib
    ```
 
-   Confirm the official BTS annual ZIP files are present under `Data/raw/`. Keep that source data unchanged.
-
-2. Install/check dependencies, and test the Week 8 Python source:
+2. Use the existing Week 8 Python environment. Install only if necessary, without changing the environment used to serialize Week 8 MLP_B:
 
    ```powershell
    python -m pip install -r .\requirements.txt
-   python -m pip install -r .\requirements_week8_additions.txt
-   python -c "import pandas,numpy,sklearn,matplotlib,joblib,threadpoolctl,nbformat; print('Week 8 dependencies OK')"
-   python -m py_compile .\Src\week8_src_mlp_neural_network.py
+   python -m pip install -r .\requirements_week9_additions.txt
+   python -c "import pandas,numpy,sklearn,matplotlib,joblib,nbformat; print('Week 9 dependencies OK')"
+   python -m py_compile .\Src\week9_src_select_and_final_test.py
    ```
 
-   Optional small synthetic functionality test (**not real project metrics**):
+   If the saved joblib model cannot be loaded because of a scikit-learn version mismatch, restore the **same compatible environment used in Week 8** rather than silently upgrading model code or retraining.
+
+3. Optional code-integrity test, **never used for coursework results**:
 
    ```powershell
-   python .\tests\test_week8_smoke.py
+   python .\tests\test_week9_smoke.py
    ```
 
-3. Verify the generated outputs:
+   It uses artificial data in a temporary directory and will not overwrite research files.
+
+4. **Recommended safety check before final test:** run the validation-only comparison (does not access test), and confirm MLP_B and nine rows:
 
    ```powershell
-   Get-ChildItem .\Reports\week8\week8_tables -File
-   Get-ChildItem .\Reports\week8\week8_figures -File
-   Get-ChildItem .\Models\week8 -File
-   Import-Csv .\Reports\week8\week8_tables\week8_three_model_comparison.csv | Format-Table -AutoSize
-   Get-Content .\Reports\week8\week8_verified_results_for_report.md
+   python .\Src\week9_src_select_and_final_test.py --validation-only
+   Import-Csv .\Reports\week9\week9_tables\week9_nine_model_comparison.csv | Format-Table -AutoSize
+   Get-Content .\Reports\week9\week9_tables\week9_selection_lock.json
    ```
 
-   Comparison CSV contains **three rows** and the long-format CSV **six rows**. 
-   Check all six training/validation metrics, the `week8_winner_summary.json` winner, and `EvaluatedTestSet: false`.
+   The original Week 6–8 CSV files are preferred. If one is absent, the program uses its included historical reference. If a local source conflicts materially with the reference, the script stops and won't combining inconsistent metrics**. 
+
+5. **Run the Week 9 notebook:** open `Notebooks/week9_notebook_select_winner_final_test.ipynb`, select the same Python kernel used in Week 8, click **Run All**.
+
+6. Inspect the actual results:
+
+   ```powershell
+   Import-Csv .\Reports\week9\week9_tables\week9_nine_model_comparison.csv | Format-Table -AutoSize
+   Import-Csv .\Reports\week9\week9_tables\week9_winner_train_validation_test_metrics.csv | Format-Table -AutoSize
+   Get-Content .\Reports\week9\week9_tables\week9_test_winner_summary.json
+   Get-Content .\Reports\week9\week9_verified_results_for_report.md
+   Get-ChildItem .\Reports\week9\week9_figures -File
+   Get-ChildItem .\Models\week9 -File
+   ```
+
+   After execution output folders contain nine-model comparison and validation ranking CSVs, selection lock JSON, final winning-model train/validation/test table, test summary JSON, test monthly MAE, four figures, and the final model-pointer manifest.
+
+7.  Commit and push **one command at a time** from the correct Git repo:
+
+    ```powershell
+    git status
+    git add -A
+    git status
+    git diff --cached --stat
+    git commit -m "Week 9: select nine-model winner and evaluate held-out test"
+    git pull --rebase origin main
+    git push origin main
+    git status
+    git --no-pager log --oneline --decorate -5
+    ```
+
+    Repository: https://github.com/Laoshi88/ADAN8888-Airline-Demand-Forecasting

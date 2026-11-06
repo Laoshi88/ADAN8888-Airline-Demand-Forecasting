@@ -1,0 +1,16 @@
+{
+  "Winner": "MLP_B",
+  "SelectionRule": "Lowest validation MAE; then validation RMSE; then predeclared simple-to-complex ordering",
+  "ComparisonDigest": "ee69b48cdfc878f473de04d2eefd86747b37a4df0036696097d58f51a49ed43c",
+  "SelectedValidationMAE": 1143.1951956789312,
+  "SelectedValidationRMSE": 1988.777968122436,
+  "Sources": {
+    "Ridge": "Reports/week6/week6_tables/week6_models_metrics_comparison.csv",
+    "HGB": "Reports/week7/week7_tables/week7_three_model_comparison.csv",
+    "MLP": "Reports/week8/week8_tables/week8_three_model_comparison.csv"
+  },
+  "TestDataViewedForSelection": false,
+  "TestDataEvaluatedAtSelection": false,
+  "ParametersChangedAfterSelection": false,
+  "SelectedSavedModel": "Models/week8/week8_selected_mlp_neural_network.joblib"
+}

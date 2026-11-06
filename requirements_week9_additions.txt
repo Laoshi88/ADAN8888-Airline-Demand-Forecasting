@@ -1,0 +1,4 @@
+# Week 9 uses existing Week 5–8 pandas/numpy/scikit-learn/matplotlib/joblib environment.
+# Do not upgrade scikit-learn across saved Week 8 joblib model compatibility.
+nbformat>=5
+nbconvert>=7
