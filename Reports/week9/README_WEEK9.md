@@ -15,10 +15,9 @@
 - `Reports/week9/week9_notebook_select_winner_final_test.pdf` — executed notebook PDF supplied from local run.
 - `Reports/week9/week9_tables/` — nine-model comparison, ranking, selection lock, final-test summary, 3-partition metrics and 21-month test error CSV.
 - `Reports/week9/week9_figures/` — all four original Week 9 figures from the actual run.
+- `Reports/week9/week9_figure_nine_model_MAE_grouped_by_family.png` — validation mean absolute error (MAE) across Week 6-8 modeling approaches, grouped by family.
 - `Reports/week9/week9_reference_metrics/` — reference metrics and pre-run graphics required by the existing Week 9 source; retain these in the repository.
 - `Reports/week9/week9_verified_results_for_report.md` — reconciled metrics, interpretation, provenance, and outstanding checks.
-- `Reports/week9/week9_discussion_initial_post.md` — post-run discussion draft with the validated final-test result.
-- `Reports/week9/week9_submission_checklist.md` — remaining local verification and submission items.
 
 ## Modeling and evaluation design
 
