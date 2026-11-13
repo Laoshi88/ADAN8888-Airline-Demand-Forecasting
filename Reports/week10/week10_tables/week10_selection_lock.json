@@ -1,0 +1,25 @@
+{
+  "Winner": "MLP_B_temporal",
+  "ComparisonRule": "Lowest validation MAE; RMSE; trainable parameter count; predefined order",
+  "ValidationScores": {
+    "MLP_B_temporal": {
+      "MAE": 809.3315694219484,
+      "RMSE": 1299.809645360023
+    },
+    "MLP_B_temporal_quality": {
+      "MAE": 819.8029231739289,
+      "RMSE": 1330.5446366578485
+    },
+    "MLP_B_enhanced_refit": {
+      "MAE": 870.3522480992773,
+      "RMSE": 1466.9506819302512
+    },
+    "MLP_B_original_PCA": {
+      "MAE": 1143.1951956789312,
+      "RMSE": 1988.7779681224358
+    }
+  },
+  "OriginalReference": "Locked Week 9 MLP_B",
+  "TestEvaluatedAtSelection": false,
+  "Week9TestPreviouslyExamined": true
+}

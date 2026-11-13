@@ -1,101 +1,95 @@
-# Week 9 — Select the Winning Model and Final Test Evaluation
+# Week 10 — Data-Centric AI: Training Error Analysis and MLP_B Refit
 
 ## What is included in merge
 
-- `Src/week9_src_select_and_final_test.py` — nine-model comparison, selection lock, bias–variance diagnostic, and final one-time test evaluation.
-- `Notebooks/week9_notebook_select_winner_final_test.ipynb` — same workflow explained in an organized Jupyter notebook.
-- `Reports/week9/week9_report_select_winning_model.docx` — formatted written report.
-- `Reports/week9/week9_reference_metrics/week9_verified_prior_week6_to_week8_metrics.csv` — audited historical Week 6–8 scores; Ridge values shown to the original Week 6 notebook's three-decimal precision.
-- `Reports/week9/week9_reference_metrics/week9_figure_*.png` — pre-run illustrations generated from prior real validation results, **not** test results. Actual run exports charts under `Reports/week9/week9_figures/`.
-- `Models/week9/README.md` — final saved-model pointer and expected manifest.
-- `tests/test_week9_smoke.py` — isolated synthetic-only integrity test for the model-selection lock, validation gate, and test idempotence.
-- `requirements_week9_additions.txt` — additional dependencies for notebook export. 
-- `Reports/week9/week9_report_select_winning_model.docx` — formatted written report.
-- `Reports/week9/week9_report_select_winning_model.pdf` — rendered and visually checked PDF reference copy of report.
-- `Reports/week9/week9_notebook_select_winner_final_test.pdf` — executed notebook PDF supplied from local run.
-- `Reports/week9/week9_tables/` — nine-model comparison, ranking, selection lock, final-test summary, 3-partition metrics and 21-month test error CSV.
-- `Reports/week9/week9_figures/` — all four original Week 9 figures from the actual run.
-- `Reports/week9/week9_figure_nine_model_MAE_grouped_by_family.png` — validation mean absolute error (MAE) across Week 6-8 modeling approaches, grouped by family.
-- `Reports/week9/week9_reference_metrics/` — reference metrics and pre-run graphics required by the existing Week 9 source; retain these in the repository.
-- `Reports/week9/week9_verified_results_for_report.md` — reconciled metrics, interpretation, provenance, and outstanding checks.
+- `Src/week10_src_data_enhancement_error_analysis_refit.py` — reusable training-only error audit; calendar-exact lag generation; three incremental data improvements; validation-based selection lock; and final historical test reporting.
+- `Notebooks/week10_notebook_data_centric_ai.ipynb` — same workflow explained in an organized Jupyter notebook.
+- `Reports/week10/week10_report_data_centric_ai.docx` and `.pdf` — finalized empirical Week 10 report with all recorded BTS results, validation winner, 4 figures, and operational limitations.
+- `Reports/week10/week10_verified_results_for_report.md` — documented evidence, metrics, and interpretation safeguards.
+- `Reports/week10/week10_tables/` — all generated CSV and JSON metrics, rankings, missingness audit, and training residual data.
+- `Reports/week10/week10_figures/` — all generated figures; final report uses a curated subset.
+- `Reports/week10/week10_notebook_data_centric_ai.pdf` — executed notebook PDF with `All Week 10 checks passed.`
+- `tests/test_week10_smoke.py` — independent **synthetic** end-to-end test; its numerical metrics must never be reported as real BTS results.
+- `requirements_week10_additions.txt` — dependencies already used by earlier weeks; retain the environment compatible with the saved Week 8/9 estimator.
+- `Models/week10/` — original selected-model bundle, manifest, and README.
+- `Data/processed/week10/` — original 500-row enhanced data samples for each split; **not** the full model-training inputs.
 
-## Modeling and evaluation design
+## Modeling design and verified results
 
-- **Candidates:** exactly nine previously trained configurations: Ridge_A/B/C, HGB_A/B/C, MLP_A/B/C.
-- **Winner rule:** lowest **validation MAE**, then lowest validation RMSE, then predeclared complexity ordering for exact ties.
-- **Final validation winner:** MLP_B (hidden layers 64,32), historical validation MAE 1,143.20 passengers.
-- **Test policy:** select and save the winner first; verify the saved model reproduces Week 8 validation MAE and RMSE; only then predict the 264,291 previously untouched test observations.
-- **No retuning after test:** one final evaluation of the saved, prior-training-fitted model. The source reuses saved results on repeated notebook runs.
-- **Bias–variance diagnostic:** training/validation MSE for all nine configurations, with x-axis ordered by nominal capacity *within* families; cross-family complexity order is an approximation, not a formal global ranking. The gap is not a formal bias–variance decomposition.
-- **Train/validation/test partitions:** previously established 1,062,603 / 239,395 / 264,291 eligible rows; all numerical preprocessing remains training-fitted.
+- **Architecture:** Week 9-selected MLP_B `(64, 32)`, same training hyperparameters, expanding input-layer dimensionality across enhancement stages.
+- **Reference:** Original MLP_B uses 2 features (PC1, PC2); validation MAE 1,143.20; validation RMSE 1,988.78.
+- **Improvement 1:** Exact-calendar demand lags, complete rolling mean, monthly/annual log changes, and missingness indicators. The 16-feature model achieved validation MAE **809.33**, a 29.20% reduction.
+- **Improvement 2:** Adds operational and data-quality features; 30 inputs, validation MAE **819.80** (worse than temporal-only).
+- **Improvement 3:** Adds seasonal and route context; 38 inputs, validation MAE **870.35** (worse again despite lower training error).
+- **Winner:** `MLP_B_temporal` by validation MAE, then RMSE and fewer parameters for ties. It uses 16 inputs and 3,201 trainable parameters.
+- **Selected model MAE:** training **808.17**, validation **809.33**, historical test **790.29** passengers. Test RMSE **1,283.12**, R² **0.9732**.
+- **Test policy:** The Week 9 test period was examined previously; Week 10 test is a **reused retrospective period**, not a new independent holdout. The selection lock was written before Week 10 test scoring.
+- **Operational limitation:** Official BTS monthly inputs may be published too late for real-time issuance, and no business error-acceptance threshold is supplied.
 
-## Verified results
+## Step-by-step VS Code / PowerShell workflow
 
-- **Winner:** Week 8 `MLP_B`, hidden layers `(64, 32)`, selected by minimum validation MAE from nine prior configurations.
-- **Validation MAE:** 1,143.20 passengers.
-- **Final held-out test:** 264,291 rows, 21 forecast months from September 2024 through May 2026.
-- **Test MAE:** 1,122.50 passengers; **Test RMSE:** 1,935.24 passengers; **Test R²:** 0.9390.
-- **Train/validation/test MAE:** 1,161.63 / 1,143.20 / 1,122.50 passengers.
-- **Model integrity:** selection lock, validation-reproduction gate, and test-no-refit flags are verified in the supplied result JSONs. Test evaluation need not be repeated.
-- **Limitations:** model quality is promising in retrospective data but requires an operational acceptance threshold and publication-lag verification before deployment.
-
-## VS Code / PowerShell workflow
-
-1. Check the prerequisites. All should print `True`:
+1. **Check prerequisites.** Every statement should return `True`. The model file must be the exact Week 9-validated artifact; a newly fitted replacement is not acceptable.
 
    ```powershell
    Test-Path .\Src\week5_src_features_dimensionality.py
-   Test-Path .\Src\week6_src_ridge_models.py
    Test-Path .\Src\week8_src_mlp_neural_network.py
-   Test-Path .\Src\week9_src_select_and_final_test.py
-   Test-Path .\Reports\week6\week6_tables\week6_models_metrics_comparison.csv
-   Test-Path .\Reports\week7\week7_tables\week7_three_model_comparison.csv
-   Test-Path .\Reports\week8\week8_tables\week8_three_model_comparison.csv
+   Test-Path .\Src\week10_src_data_enhancement_error_analysis_refit.py
    Test-Path .\Models\week8\week8_selected_mlp_neural_network.joblib
+   Test-Path .\Models\week9\week9_final_model_manifest.json
+   Test-Path .\Reports\week9\week9_tables\week9_selection_lock.json
+   Test-Path .\Data\raw
    ```
 
-2. Use the existing Week 8 Python environment. Install only if necessary, without changing the environment used to serialize Week 8 MLP_B:
+   **If `False` appears, stop.** Restore the missing source/model/manifest from your previous weeks; do not retrain the Week 9 original simply to bypass this check.
+
+2. **Verify the completed evidence:**
 
    ```powershell
-   python -m pip install -r .\requirements.txt
-   python -m pip install -r .\requirements_week9_additions.txt
-   python -c "import pandas,numpy,sklearn,matplotlib,joblib,nbformat; print('Week 9 dependencies OK')"
-   python -m py_compile .\Src\week9_src_select_and_final_test.py
+   Test-Path .\Src\week10_src_data_enhancement_error_analysis_refit.py
+   Test-Path .\Notebooks\week10_notebook_data_centric_ai.ipynb
+   Test-Path .\Reports\week10\week10_tables\week10_incremental_ablation.csv
+   Test-Path .\Reports\week10\week10_tables\week10_selection_lock.json
+   Test-Path .\Reports\week10\week10_tables\week10_final_test_result.json
+   Test-Path .\Models\week10\week10_final_model_manifest.json
    ```
 
-   If the saved joblib model cannot be loaded because of a scikit-learn version mismatch, restore the **same compatible environment used in Week 8** rather than silently upgrading model code or retraining.
+   All should return `True`. Compare the selected model in the two JSON files; it must be `MLP_B_temporal`.
 
-3. Optional code-integrity test:
+3. **Check the Python environment and source without changing scikit-learn versions unnecessarily.** Pick the same Python kernel used for the Week 9 saved model. Install only missing requirements using the existing repository requirements as appropriate.
 
    ```powershell
-   python .\tests\test_week9_smoke.py
+   python -c "import pandas,numpy,sklearn,matplotlib,joblib,threadpoolctl,nbformat; print('Week 10 dependencies OK')"
+   python -m py_compile .\Src\week10_src_data_enhancement_error_analysis_refit.py
+   python .\tests\test_week10_smoke.py
    ```
 
-   It uses artificial data in a temporary directory and will not overwrite research files.
+   The smoke test has **synthetic data only** and reports no real BTS metrics.
 
-4. **Recommended safety check before final test:** run the validation-only comparison (does not access test), and confirm MLP_B and nine rows:
+4. **Run the real full-data notebook.** Open `Notebooks/week10_notebook_data_centric_ai.ipynb`; select your established kernel and click **Run All**. This runs the source only once. Keep VS Code open until the final cell finishes. It should display:
+
+   ```text
+   All Week 10 checks passed.
+   ===== WEEK 10 END =====
+   ```
+
+   For command-line execution **instead** of the notebook, use `python .\Src\week10_src_data_enhancement_error_analysis_refit.py`. Do **not** run both from scratch; the notebook can read completed cached outputs.
+
+5. **Inspect the required results.** The following files are generated from the full local BTS dataset:
 
    ```powershell
-   python .\Src\week9_src_select_and_final_test.py --validation-only
-   Import-Csv .\Reports\week9\week9_tables\week9_nine_model_comparison.csv | Format-Table -AutoSize
-   Get-Content .\Reports\week9\week9_tables\week9_selection_lock.json
+   Import-Csv .\Reports\week10\week10_tables\week10_incremental_ablation.csv | Format-Table -AutoSize
+   Import-Csv .\Reports\week10\week10_tables\week10_train_validation_test_metrics.csv | Format-Table -AutoSize
+   Get-Content .\Reports\week10\week10_tables\week10_selection_lock.json
+   Get-Content .\Reports\week10\week10_tables\week10_final_test_result.json
+   Get-ChildItem .\Reports\week10\week10_figures -File
+   Get-Content .\Reports\week10\week10_verified_results_for_report.md
    ```
 
-   The original Week 6–8 CSV files are preferred. If one is absent, program uses its included historical reference. If a local source conflicts materially with reference, script stops and won't combining inconsistent metrics**. 
+## Interpretation safeguards
 
-5. **Run the Week 9 notebook:** open `Notebooks/week9_notebook_select_winner_final_test.ipynb`, select the same Python kernel used in Week 8, click **Run All**.
-
-6. Inspect the actual results:
-
-   ```powershell
-   Import-Csv .\Reports\week9\week9_tables\week9_nine_model_comparison.csv | Format-Table -AutoSize
-   Import-Csv .\Reports\week9\week9_tables\week9_winner_train_validation_test_metrics.csv | Format-Table -AutoSize
-   Get-Content .\Reports\week9\week9_tables\week9_test_winner_summary.json
-   Get-Content .\Reports\week9\week9_verified_results_for_report.md
-   Get-ChildItem .\Reports\week9\week9_figures -File
-   Get-ChildItem .\Models\week9 -File
-   ```
-
-   After execution output folders contain nine-model comparison and validation ranking CSVs, selection lock JSON, final winning-model train/validation/test table, test summary JSON, test monthly MAE, four figures, and the final model-pointer manifest.
+- Week 10 synthetic smoke test is separate from this official BTS run; **only the recorded BTS outputs** are used in the report.
+- An enhancement is not necessarily beneficial; the additional quality and route/seasonality stages made validation MAE worse compared with temporal history alone.
+- The winning temporal stage has a larger input layer and more trainable weights than the original model despite the same hidden-layer architecture.
+- Training errors are diagnostic; production readiness requires as-of availability, business thresholds, and new prospective validation.
 
 Repository: https://github.com/Laoshi88/ADAN8888-Airline-Demand-Forecasting

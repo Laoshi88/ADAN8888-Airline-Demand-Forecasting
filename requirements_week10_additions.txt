@@ -1,0 +1,11 @@
+# Week 10 uses the same Python/scikit-learn environment as the Week 8/9 saved estimator.
+# Avoid upgrading scikit-learn just for this assignment: pickle/joblib model formats
+# may be incompatible across versions. Only install missing dependencies.
+numpy
+pandas
+scikit-learn
+matplotlib
+joblib
+threadpoolctl
+nbformat
+ipykernel

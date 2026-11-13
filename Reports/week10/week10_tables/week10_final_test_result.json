@@ -1,0 +1,17 @@
+{
+  "SelectedModel": "MLP_B_temporal",
+  "TrainingRows": 1062603,
+  "ValidationRows": 239395,
+  "TestRows": 264291,
+  "TestMetrics": {
+    "MAE": 790.2853829573434,
+    "RMSE": 1283.1248119153024,
+    "R2": 0.9731973049588701,
+    "MeanResidual": -177.72507071554602,
+    "WAPE_Percent": 14.443973527937787
+  },
+  "TestMode": "Week 10 selected enhanced model scored once on reused Week 9 test period",
+  "Week9TestPreviouslyExamined": true,
+  "TestLabelsUsedForSelection": false,
+  "SelectionLock": "Reports\\week10\\week10_tables\\week10_selection_lock.json"
+}

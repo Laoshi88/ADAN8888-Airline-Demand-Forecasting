@@ -1,0 +1,5 @@
+Stage,AddedFeatures,FeatureCount
+MLP_B_original_PCA,None,2
+MLP_B_temporal,Historical passenger lags and changes,16
+MLP_B_temporal_quality,Additional operational ratios and quality/missingness,30
+MLP_B_enhanced_refit,Forecast seasonality and training-derived route context,38
